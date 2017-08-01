@@ -1,0 +1,14 @@
+{
+    "compilerOptions": {
+        "target": "es2016",
+        "module": "commonjs",
+        "moduleResolution": "node",
+        "jsx": "react",
+        "rootDir": "src",
+        "outDir": "./out",
+        "declaration": true
+    },
+    "exclude": [
+        "node_modules"
+    ]
+}

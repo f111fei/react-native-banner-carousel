@@ -1,0 +1,35 @@
+{
+  "name": "react-native-banner-carousel",
+  "version": "1.0.0",
+  "description": "a carousel component for React Native",
+  "main": "out/index.js",
+  "typings": "out/index.d.ts",
+  "scripts": {
+    "build": "tsc -w",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/f111fei/react-native-banner-carousel.git"
+  },
+  "keywords": [
+    "react-native-component",
+    "react-component",
+    "react-native",
+    "ios",
+    "android",
+    "swiper",
+    "carousel",
+    "react-native-swiper",
+    "react-native-carousel"
+  ],
+  "author": "xzper",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/f111fei/react-native-banner-carousel/issues"
+  },
+  "homepage": "https://github.com/f111fei/react-native-banner-carousel",
+  "devDependencies": {
+    "@types/react-native": "^0.46.9"
+  }
+}
