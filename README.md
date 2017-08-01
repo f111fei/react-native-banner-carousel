@@ -6,6 +6,12 @@ Swiper component for React Native. Compatible with Android & iOS. Pull requests 
 
 ![](images/showcase.gif)
 
+
+![](https://user-images.githubusercontent.com/7069719/28824969-0886c69e-76f7-11e7-8119-d77646246d98.png)
+
+[explore in expo](https://expo.io/@xzper/react-native-banner-carousel-example)
+
+
 ## Install
 
     $ npm install --save react-native-banner-carousel
@@ -13,14 +19,11 @@ Swiper component for React Native. Compatible with Android & iOS. Pull requests 
 ## Usage
         
     import React from 'react';
-    import {
-        AppRegistry,
-        View,
-        Image,
-        Dimensions
-    } from 'react-native';
-
     import Carousel from 'react-native-banner-carousel';
+    import { StyleSheet, Image, View, Dimensions } from 'react-native';
+
+    const BannerWidth = Dimensions.get('window').width;
+    const BannerHeight = 260;
 
     const BannerWidth = Dimensions.get('window').width;
     const BannerHeight = 260;
@@ -31,30 +34,41 @@ Swiper component for React Native. Compatible with Android & iOS. Pull requests 
         "http://xxx.com/3.png"
     ];
 
-    var carousel = React.createClass({
-        renderPage(image) {
+
+    export default class App extends React.Component {
+
+        renderPage(image, index) {
             return (
-                <View>
+                <View key={index}>
                     <Image style={{ width: BannerWidth, height: BannerHeight }} source={{ uri: image }} />
                 </View>
             );
-        },
-        render: function () {
-            return (
-                <Carousel
-                    autoplay
-                    autoplayTimeout={5000}
-                    loop
-                    index={0}
-                    pageSize={BannerWidth}
-                >
-                    {images.map(image => this.renderPage(image))}
-                </Carousel>
-            )
         }
-    })
 
-    AppRegistry.registerComponent('carousel', () => carousel);
+        render() {
+            return (
+                <View style={styles.container}>
+                    <Carousel
+                        autoplay
+                        autoplayTimeout={5000}
+                        loop
+                        index={0}
+                        pageSize={BannerWidth}
+                    >
+                        {images.map((image, index) => this.renderPage(image, index))}
+                    </Carousel>
+                </View>
+            );
+        }
+    }
+
+    const styles = StyleSheet.create({
+        container: {
+            flex: 1,
+            backgroundColor: '#fff',
+            justifyContent: 'center'
+        },
+    });
 
 ## Properties
 
