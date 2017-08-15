@@ -25,6 +25,7 @@ export interface CarouselProps {
     pageIndicatorContainerStyle?: ViewStyle;
     activePageIndicatorStyle?: ViewStyle;
     pageIndicatorStyle?: ViewStyle;
+    pageIndicatorOffset?: number;
 }
 
 export interface CarouselState {
@@ -41,6 +42,7 @@ export default class Carousel extends React.Component<CarouselProps, CarouselSta
         autoplayTimeout: 5000,
         slipFactor: 1,
         showsPageIndicator: true,
+        pageIndicatorOffset: 16,
         animation: (animate, toValue) => {
             return Animated.spring(animate, {
                 toValue: toValue,
@@ -287,11 +289,7 @@ export default class Carousel extends React.Component<CarouselProps, CarouselSta
             indicators.push(<View key={i} style={[styles.pageIndicatorStyle, this.props.pageIndicatorStyle]} />);
         }
 
-        const radius: number = (this.props.pageIndicatorStyle && this.props.pageIndicatorStyle.borderRadius) ||
-            (styles.pageIndicatorStyle as any).borderRadius || 3;
-        const marginH: number = (this.props.pageIndicatorStyle && this.props.pageIndicatorStyle.marginHorizontal) ||
-        (styles.pageIndicatorStyle as any).marginHorizontal || 5;
-        const offset = radius * 2 + marginH * 2;
+        const offset = this.props.pageIndicatorOffset;
 
         let left: Animated.AnimatedInterpolation;
 

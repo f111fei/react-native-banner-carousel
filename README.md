@@ -92,6 +92,7 @@ Swiper component for React Native. Compatible with Android & iOS. Pull requests 
 | pageIndicatorContainerStyle | - | `style` | Custom styles will merge with the default styles. |
 | pageIndicatorStyle | - | `style` | Custom styles will merge with the default styles. |
 | activePageIndicatorStyle | - | `style` | Custom styles will merge with the default styles. |
+| pageIndicatorOffset | 16 | `number` | The active page indicator offset when change page. |
 | renderPageIndicator | - | `func` | Complete control how to render pagination. `(config: PageIndicatorConfig) => JSX.Element;`. |
 
 #### PageIndicatorConfig
