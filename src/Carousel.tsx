@@ -22,6 +22,7 @@ export interface CarouselProps {
     onPageChanged?: (index: number) => void;
     showsPageIndicator?: boolean;
     renderPageIndicator?: (config: PageIndicatorConfig) => JSX.Element;
+    pageIndicatorContainerStyle?: ViewStyle;
     activePageIndicatorStyle?: ViewStyle;
     pageIndicatorStyle?: ViewStyle;
 }
@@ -286,6 +287,12 @@ export default class Carousel extends React.Component<CarouselProps, CarouselSta
             indicators.push(<View key={i} style={[styles.pageIndicatorStyle, this.props.pageIndicatorStyle]} />);
         }
 
+        const radius: number = (this.props.pageIndicatorStyle && this.props.pageIndicatorStyle.borderRadius) ||
+            (styles.pageIndicatorStyle as any).borderRadius || 3;
+        const marginH: number = (this.props.pageIndicatorStyle && this.props.pageIndicatorStyle.marginHorizontal) ||
+        (styles.pageIndicatorStyle as any).marginHorizontal || 5;
+        const offset = radius * 2 + marginH * 2;
+
         let left: Animated.AnimatedInterpolation;
 
         if (pageNum === 1) {
@@ -296,17 +303,17 @@ export default class Carousel extends React.Component<CarouselProps, CarouselSta
         } else if (!loop) {
             left = this.state.scrollValue.interpolate({
                 inputRange: [0, 1],
-                outputRange: [0, 16]
+                outputRange: [0, offset]
             });
         } else {
             left = this.state.scrollValue.interpolate({
                 inputRange: [0, 1, 2, childrenNum - 2, childrenNum - 1],
-                outputRange: [0, 0, 16, 16 * (childrenNum - 3), 16 * (childrenNum - 3)]
+                outputRange: [0, 0, offset, offset * (childrenNum - 3), offset * (childrenNum - 3)]
             });
         }
 
         return (
-            <View style={{ position: 'absolute', alignSelf: 'center', flexDirection: 'row', bottom: 10 }}>
+            <View style={[styles.pageIndicatorContainerStyle, this.props.pageIndicatorContainerStyle]}>
                 {indicators}
                 <Animated.View
                     style={[
@@ -381,9 +388,15 @@ const styles = StyleSheet.create({
         borderRadius: 3,
         marginHorizontal: 5,
         backgroundColor: 'rgba(0,0,0,.4)'
-    },
+    } as ViewStyle,
     activePageIndicatorStyle: {
         position: 'absolute',
         backgroundColor: '#ffc81f',
-    }
+    } as ViewStyle,
+    pageIndicatorContainerStyle: {
+        position: 'absolute',
+        alignSelf: 'center',
+        flexDirection: 'row',
+        bottom: 10
+    } as ViewStyle
 });

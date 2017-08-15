@@ -89,6 +89,7 @@ Swiper component for React Native. Compatible with Android & iOS. Pull requests 
 | Prop  | Default  | Type | Description |
 | :------------ |:---------------:| :---------------:| :-----|
 | showsPageIndicator | true | `bool` | Set to true make pagination indicator visible.  |
+| pageIndicatorContainerStyle | - | `style` | Custom styles will merge with the default styles. |
 | pageIndicatorStyle | - | `style` | Custom styles will merge with the default styles. |
 | activePageIndicatorStyle | - | `style` | Custom styles will merge with the default styles. |
 | renderPageIndicator | - | `func` | Complete control how to render pagination. `(config: PageIndicatorConfig) => JSX.Element;`. |
