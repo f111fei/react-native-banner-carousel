@@ -26,9 +26,6 @@ import { StyleSheet, Image, View, Dimensions } from 'react-native';
 const BannerWidth = Dimensions.get('window').width;
 const BannerHeight = 260;
 
-const BannerWidth = Dimensions.get('window').width;
-const BannerHeight = 260;
-
 const images = [
     "http://xxx.com/1.png",
     "http://xxx.com/2.png",
