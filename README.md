@@ -76,7 +76,7 @@ const styles = StyleSheet.create({
 | **pageSize** | windowWidth | `number` | the size of carousel page, must be the same for all of them. Required with horizontal carousel.  |
 | loop | true | `bool` | Set to `false` to disable continuous loop mode. |
 | index | 0 | `number` | Index number of initial slide. |
-| autoplay | false | `bool` | Set to `true` enable auto play mode. |
+| autoplay | true | `bool` | Set to `true` enable auto play mode. |
 | autoplayTimeout | 5000 | `number` | Delay between auto play transitions (in Millisecond). |
 | animation | - | `func` | function that returns a React Native Animated configuration. `(animate: Animated.Value, toValue: number) => Animated.CompositeAnimation;` |
 | onPageChanged | - | `func` | page change callback. `(index: number) => void;` |
