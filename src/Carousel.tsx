@@ -344,17 +344,32 @@ export default class Carousel extends React.Component<CarouselProps, CarouselSta
         });
 
         const childrenNum = pages.length;
-        const translateX = scrollValue.interpolate({
-            inputRange: [0, 1, childrenNum],
-            outputRange: [0, -pageSize, -childrenNum * pageSize]
-        });
+        let content: JSX.Element;
+
+        if (childrenNum < 1) {
+            content = null;
+        } else {
+            const translateX = scrollValue.interpolate({
+                inputRange: [0, 1, childrenNum],
+                outputRange: [0, -pageSize, -childrenNum * pageSize]
+            });
+            content = (
+                <Animated.View
+                    style={{ flexDirection: 'row', width: pageSize * childrenNum, transform: [{ translateX }] }}
+                    {...this.panResponder.panHandlers}
+
+                >
+                    {pages}
+                </Animated.View>
+            );
+        }
 
         return (
             <View>
                 <ScrollView
                     ref={ref => this.scrollView = ref as any}
-                    style={{ width: this.props.pageSize }}
-                    contentContainerStyle={{ width: this.props.pageSize + 1 }}
+                    style={{ width: pageSize }}
+                    contentContainerStyle={{ width: pageSize + 1 }}
                     horizontal
                     pagingEnabled
                     directionalLockEnabled
@@ -365,13 +380,7 @@ export default class Carousel extends React.Component<CarouselProps, CarouselSta
                     showsHorizontalScrollIndicator={false}
                     scrollEnabled={Platform.OS === 'ios' ? true : false}
                 >
-                    <Animated.View
-                        style={{ flexDirection: 'row', width: this.props.pageSize * childrenNum, transform: [{ translateX }] }}
-                        {...this.panResponder.panHandlers}
-
-                    >
-                        {pages}
-                    </Animated.View>
+                    {content}
                 </ScrollView>
                 {this.renderIndicator({ childrenNum, pageNum, loop, scrollValue })}
             </View>
