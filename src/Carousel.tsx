@@ -18,7 +18,7 @@ export interface CarouselProps {
     autoplay?: boolean;
     autoplayTimeout?: number;
     slipFactor?: number;
-    animation?: (animate: Animated.Value, toValue: number) => Animated.CompositeAnimation;
+    animation?: (animate: Animated.Value, toValue: number, useNativeDriver: true,) => Animated.CompositeAnimation;
     onPageChanged?: (index: number) => void;
     showsPageIndicator?: boolean;
     renderPageIndicator?: (config: PageIndicatorConfig) => JSX.Element;
