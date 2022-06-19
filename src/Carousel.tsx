@@ -18,7 +18,7 @@ export interface CarouselProps {
     autoplay?: boolean;
     autoplayTimeout?: number;
     slipFactor?: number;
-    animation?: (animate: Animated.Value, toValue: number, useNativeDriver: false,) => Animated.CompositeAnimation;
+    animation?: (animate: Animated.Value, toValue: number, useNativeDriver: false) => Animated.CompositeAnimation;
     onPageChanged?: (index: number) => void;
     showsPageIndicator?: boolean;
     renderPageIndicator?: (config: PageIndicatorConfig) => JSX.Element;
@@ -47,7 +47,8 @@ export default class Carousel extends React.Component<CarouselProps, CarouselSta
             return Animated.spring(animate, {
                 toValue: toValue,
                 friction: 10,
-                tension: 50
+                tension: 50,
+                useNativeDriver: false
             });
         }
     };
